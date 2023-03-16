@@ -1,9 +1,8 @@
-#!/bin/bash
-#include<stdio.h>
+#include <stdio.h>
 /**
- * main - Entry point
+ * main - a program that print a line with puts functin
  *
- * Return: Always 0(Success)
+ * Return: 0(Success)
  */
 int main(void)
 {
