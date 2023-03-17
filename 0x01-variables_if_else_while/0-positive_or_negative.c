@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <time.h>
-/*
+/**
  * main - a program that determines if n positive or negative or zero
  *
  * Return: 0 (Success)
