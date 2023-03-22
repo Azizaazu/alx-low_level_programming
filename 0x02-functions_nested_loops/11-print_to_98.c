@@ -41,6 +41,4 @@ printf("\n");
 }
 else if (n == 98)
 printf("%d", n);
-if (i != 98)
-printf(", ");
 }
