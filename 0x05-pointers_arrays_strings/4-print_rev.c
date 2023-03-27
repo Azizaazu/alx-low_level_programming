@@ -10,18 +10,14 @@
 void print_rev(char *s)
 {
 	int lon = 0;
-	int r;
 
-	while (*s != '\0')
+	while (s[lon] != '\0')
 	{
 		lon++;
-		s++;
 	}
-	s--;
-	for (r = lon; r > 0; r++)
+	for (lon = lon - 1; lon >= 0; lon--)
 	{
-		_putchar(*s);
-		s--;
+		_putchar(s[lon]);
 	}
 	_putchar('\n');
 }
