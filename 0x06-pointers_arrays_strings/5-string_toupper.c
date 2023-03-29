@@ -3,7 +3,7 @@
 
 /**
  * string_toupper - changes all lowercase letters of a string to uppercase
- * @n: parameter
+ * @n: poiter
  * Return: n
  */
 
@@ -15,10 +15,8 @@ char *string_toupper(char *n)
 	while (n[x] != '\0')
 	{
 		if (n[x] >= 'a' && n[x] <= 'z')
-		{
 			n[x] = n[x] - 32;
-			x++;
-		}
+		x++;
 	}
 	return (n);
 }
