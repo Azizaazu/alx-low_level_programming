@@ -10,25 +10,25 @@
 
 void print_buffer(char *b, int size)
 {
-	int x, y, z;
+	int a, y, z;
 
-	x =  0;
+	a = 0;
 
 	if (size <= 0)
 	{
 		printf("\n");
 		return;
 	}
-	while (x < size)
+	while (a < size)
 	{
-		y = size - x < 10 ? size - x : 10;
+		y = size - a < 10 ? size - a : 10;
 
-		printf("%08x:", x);
+		printf("%08x:", a);
 
 			for (z = 0; z < 10; z++)
 			{
 				if (z < y)
-					printf("%02x", *(b + x + z));
+					printf("%02x", *(b + a + z));
 				else
 					printf(" ");
 				if (z % 2)
@@ -38,7 +38,7 @@ void print_buffer(char *b, int size)
 			}
 			for (z = 0; z < y; z++)
 			{
-				int c = *(b + x + z);
+				int c = *(b + a + z);
 
 				if (c < 32 || c > 132)
 				{
@@ -47,6 +47,6 @@ void print_buffer(char *b, int size)
 				printf("%c", c);
 			}
 			printf("\n");
-			x += 10;
+			a += 10;
 	}
 }
