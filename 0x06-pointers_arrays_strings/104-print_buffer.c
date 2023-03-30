@@ -14,7 +14,7 @@ void print_buffer(char *b, int size)
 
 	for (bytes = 0; bytes < size; bytes += 10)
 	{
-		printf("%08x:", bytes);
+		printf("%08x: ", bytes);
 
 		for (index = 0; index < 10; index++)
 		{
