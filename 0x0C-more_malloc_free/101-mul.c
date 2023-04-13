@@ -2,10 +2,10 @@
 #include <stdlib.h>
 #include "main.h"
 #include <ctype.h>
+
 /**
  * _is_zero - prints buffer in hexa
  * @argv: argument
- *
  * Return: Nothing.
  */
 
@@ -79,20 +79,14 @@ int main(int argc, char *argv[])
 	char *s;
 
 	if (argc != 3)
-	{
-		printf("Error\n");
-		exit(98);
-	}
+		printf("Error\n"), exit(98);
 	len1 = _checknum(argv, 1);
 	len2 = _checknum(argv, 2);
 	_is_zero(argv);
 	ls = len1 + len2;
 	s = malloc(ls + 1);
 	if (s == NULL)
-	{
-		printf("Error\n");
-		exit(98);
-	}
+		printf("Error\n"), exit(98);
 	s = _intialize_array(s, ls);
 	c = ls - 1;
 	a = len1 - 1;
@@ -121,7 +115,7 @@ int main(int argc, char *argv[])
 		}
 		if (b >= 0)
 		{
-			add = ((argv[1][a] - '0') * (argv[2][b])) + (s[c] - '0') + addlen;
+			add = ((argv[1][a] - '0') * (argv[2][b] - '0')) + (s[c] - '0') + addlen;
 			addlen = add / 10, s[c] = (add % 10) + '0';
 		}
 	}
