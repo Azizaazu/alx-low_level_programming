@@ -80,18 +80,12 @@ int main(int argc, char *argv[])
 
 	if (argc != 3)
 		printf("Error\n"), exit(98);
-	len1 = _checknum(argv, 1);
-	len2 = _checknum(argv, 2);
-	_is_zero(argv);
-	ls = len1 + len2;
-	s = malloc(ls + 1);
+	len1 = _checknum(argv, 1), len2 = _checknum(argv, 2);
+	_is_zero(argv), ls = len1 + len2, s = malloc(ls + 1);
 	if (s == NULL)
 		printf("Error\n"), exit(98);
 	s = _intialize_array(s, ls);
-	c = ls - 1;
-	a = len1 - 1;
-	b = len2 - 1;
-	carry = addlen = 0;
+	c = ls - 1, a = len1 - 1, b = len2 - 1, carry = addlen = 0;
 	for (; c >= 0; c--, a--)
 	{
 		if (a < 0)
@@ -119,6 +113,6 @@ int main(int argc, char *argv[])
 			addlen = add / 10, s[c] = (add % 10) + '0';
 		}
 	}
-		printf("%s\n", s);
-		return (0);
+	printf("%s\n", s);
+	return (0);
 }
