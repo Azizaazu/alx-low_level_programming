@@ -33,13 +33,13 @@ void _is_zero(char *argv[])
 }
 
 /**
- * _intialize_array - set memory to zero in new array
+ * _initialize_array - set memory to zero in new array
  * @array: array
  * @len: length of array
  * Return: ptr of array
  */
 
-char *_intialize_array(char *array, int len)
+char *_initialize_array(char *array, int len)
 {
 	int a = 0;
 
@@ -75,44 +75,45 @@ int _checknum(char *argv[], int n)
  */
 int main(int argc, char *argv[])
 {
-	int len1, len2, ls, add, addlen, a, b, c, carry;
-	char *s;
+	int ln1, ln2, lnout, add, addl, i, j, k, ca;
+	char *nout;
 
 	if (argc != 3)
 		printf("Error\n"), exit(98);
-	len1 = _checknum(argv, 1), len2 = _checknum(argv, 2);
-	_is_zero(argv), ls = len1 + len2, s = malloc(ls + 1);
-	if (s == NULL)
+	ln1 = _checknum(argv, 1), ln2 = _checknum(argv, 2);
+	_is_zero(argv), lnout = ln1 + ln2, nout = malloc(lnout + 1);
+	if (nout == NULL)
 		printf("Error\n"), exit(98);
-	s = _intialize_array(s, ls);
-	c = ls - 1, a = len1 - 1, b = len2 - 1, carry = addlen = 0;
-	for (; c >= 0; c--, a--)
+	nout = _initialize_array(nout, lnout);
+	k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
+	for (; k >= 0; k--, i--)
 	{
-		if (a < 0)
+		if (i < 0)
 		{
-			if (addlen > 0)
+			if (addl > 0)
 			{
-				add = (s[c] - '0') + addlen;
+				add = (nout[k] - '0') + addl;
 				if (add > 9)
-					s[c - 1] = (add / 10) + '0';
-				s[c] = (add % 10) + '0';
+					nout[k - 1] = (add / 10) + '0';
+				nout[k] = (add % 10) + '0';
 			}
-			a = len1 - 1, b--, addlen = 0, carry++, c = ls - (1 + carry);
+			i = ln1 - 1, j--, addl = 0, ca++, k = lnout - (1 + ca);
 		}
-		if (b < 0)
+		if (j < 0)
 		{
-			if (s[0] != '0')
+			if (nout[0] != '0')
 				break;
-			ls--;
-			free(s), s = malloc(ls + 1), s = _intialize_array(s, ls);
-			c = ls - 1, a = len1 - 1, b = len2 - 1, carry = addlen = 0;
+			lnout--;
+			free(nout), nout = malloc(lnout + 1), nout = _initialize_array(nout, lnout);
+			k = lnout - 1, i = ln1 - 1, j = ln2 - 1, ca = addl = 0;
 		}
-		if (b >= 0)
+		if (j >= 0)
 		{
-			add = ((argv[1][a] - '0') * (argv[2][b] - '0')) + (s[c] - '0') + addlen;
-			addlen = add / 10, s[c] = (add % 10) + '0';
+			add = ((argv[1][i] - '0') * (argv[2][j] - '0')) + (nout[k] - '0') + addl;
+			addl = add / 10, nout[k] = (add % 10) + '0';
 		}
 	}
-	printf("%s\n", s);
+	printf("%s\n", nout);
 	return (0);
 }
+
