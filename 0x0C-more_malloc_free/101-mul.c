@@ -1,31 +1,33 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "main.h"
+#include <stdlib.h>
+#include <stdio.h>
 #include <ctype.h>
 
 /**
- * _is_zero - prints buffer in hexa
- * @argv: argument
- * Return: Nothing.
+ * _is_zero - determines if any number is zero
+ * @argv: argument vector.
+ *
+ * Return: no return.
  */
-
 void _is_zero(char *argv[])
 {
-	int a, z1 = 1, z2 = 1;
+	int i, isn1 = 1, isn2 = 1;
 
-	for (a = 0; argv[1][a]; a++)
-		if (argv[1][a] != '0')
+	for (i = 0; argv[1][i]; i++)
+		if (argv[1][i] != '0')
 		{
-			z1 = 0;
+			isn1 = 0;
 			break;
 		}
-	for (a = 0; argv[2][a] != '0'; a++)
-		if (argv[2][a] != '0')
+
+	for (i = 0; argv[2][i]; i++)
+		if (argv[2][i] != '0')
 		{
-			z2 = 0;
+			isn2 = 0;
 			break;
 		}
-	if (z1 == 1 || z2 == 1)
+
+	if (isn1 == 1 || isn2 == 1)
 	{
 		printf("0\n");
 		exit(0);
@@ -33,45 +35,51 @@ void _is_zero(char *argv[])
 }
 
 /**
- * _initialize_array - set memory to zero in new array
- * @array: array
- * @len: length of array
- * Return: ptr of array
+ * _initialize_array - set memery to zero in a new array
+ * @ar: char array.
+ * @lar: length of the char array.
+ *
+ * Return: pointer of a char array.
  */
-
-char *_initialize_array(char *array, int len)
+char *_initialize_array(char *ar, int lar)
 {
-	int a = 0;
+	int i = 0;
 
-	for (a = 0; a < len; a++)
-		array[a] = '0';
-	array[len] = '\0';
-	return (array);
+	for (i = 0; i < lar; i++)
+		ar[i] = '0';
+	ar[lar] = '\0';
+	return (ar);
 }
 
 /**
- * _checknum - determines length of a number
- * @argv: arguments
- * @n: row of array
- * Return: length of number
+ * _checknum - determines length of the number
+ * and checks if number is in base 10.
+ * @argv: arguments vector.
+ * @n: row of the array.
+ *
+ * Return: length of the number.
  */
 int _checknum(char *argv[], int n)
 {
-	int len;
+	int ln;
 
-	for (len = 0; argv[n][len]; len++)
-		if (!isdigit(argv[n][len]))
+	for (ln = 0; argv[n][ln]; ln++)
+		if (!isdigit(argv[n][ln]))
 		{
 			printf("Error\n");
 			exit(98);
 		}
-	return (len);
+
+	return (ln);
 }
+
 /**
- * main - multiplies two positive numbers
- * @argc: number of arguments
- * @argv: arguments
- * Return: Always 0.
+ * main - Entry point.
+ * program that multiplies two positive numbers.
+ * @argc: number of arguments.
+ * @argv: arguments vector.
+ *
+ * Return: 0 - success.
  */
 int main(int argc, char *argv[])
 {
