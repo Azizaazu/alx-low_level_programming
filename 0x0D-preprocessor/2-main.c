@@ -1,8 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
 
  /**
-  * main - a function that prints the name of the file
-  *
+  * main - prints the name of the file
   * Return: always 0 (success)
   */
 
