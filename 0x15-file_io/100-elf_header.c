@@ -27,7 +27,8 @@ void close_elf(int elf);
  */
 void print_abi(unsigned char *e_ident)
 {
-	printf(" ABI Version: %d\n", e_ident[EI_ABIVERSION]);
+	printf(" ABI Version:           %d\n",
+		e_ident[EI_ABIVERSION]);
 }
 
 /**
@@ -92,20 +93,14 @@ int main(int __attribute__((__unused__)) argc, char *argv[])
  *
  */
 
-
 void print_version(unsigned char *e_ident)
 {
-	printf(" Version: %d", e_ident[EI_VERSION]);
+	printf("  Version:                           ");
 
-	switch (e_ident[EI_VERSION])
-	{
-	case EV_CURRENT:
-		printf(" (current)\n");
-		break;
-	default:
-		printf("\n");
-		break;
-	}
+	if (e_ident[EI_VERSION] == EV_CURRENT)
+		printf("%d (current)\n", e_ident[EI_VERSION]);
+	else
+		printf("%i\n", e_ident[EI_VERSION]);
 }
 
 /**
@@ -118,15 +113,15 @@ void print_version(unsigned char *e_ident)
  */
 void print_magic(unsigned char *e_ident)
 {
-	int idx;
+	int index;
 
-	printf(" Magic: ");
+	printf(" Magic:                 ");
 
-	for (idx = 0; idx < EI_NIDENT; idx++)
+	for (index = 0; index < EI_NIDENT; index++)
 	{
-		printf("%02x", e_ident[idx]);
+		printf("%02x", e_ident[index]);
 
-		if (idx == EI_NIDENT - 1)
+		if (index == EI_NIDENT - 1)
 			printf("\n");
 		else
 			printf(" ");
@@ -140,7 +135,7 @@ void print_magic(unsigned char *e_ident)
  */
 void print_class(unsigned char *e_ident)
 {
-	printf(" Class: ");
+	printf(" Class:                   ");
 
 	switch (e_ident[EI_CLASS])
 	{
@@ -181,18 +176,19 @@ void close_elf(int elf)
  */
 void check_elf(unsigned char *e_ident)
 {
-	int idx;
+	int index = 0;
 
-	for (idx = 0; idx < 4; idx++)
+	while (index < 4)
 	{
-		if (e_ident[idx] != 127 &&
-		    e_ident[idx] != 'E' &&
-		    e_ident[idx] != 'L' &&
-		    e_ident[idx] != 'F')
+		if (e_ident[index] != 127 &&
+		    e_ident[index] != 'E' &&
+		    e_ident[index] != 'L' &&
+		    e_ident[index] != 'F')
 		{
 			dprintf(STDERR_FILENO, "Error: Not an ELF file\n");
 			exit(98);
 		}
+		index++;
 	}
 }
 
@@ -204,7 +200,7 @@ void check_elf(unsigned char *e_ident)
  */
 void print_entry(unsigned long int e_entry, unsigned char *e_ident)
 {
-	printf(" Entry point address: ");
+	printf(" Entry point address:            ");
 
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 	{
@@ -227,7 +223,7 @@ void print_entry(unsigned long int e_entry, unsigned char *e_ident)
  */
 void print_data(unsigned char *e_ident)
 {
-	printf(" Data: ");
+	printf(" Data:                  ");
 
 	switch (e_ident[EI_DATA])
 	{
@@ -255,7 +251,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
 	if (e_ident[EI_DATA] == ELFDATA2MSB)
 		e_type >>= 8;
 
-	printf(" Type: ");
+	printf(" Type:                ");
 
 	switch (e_type)
 	{
@@ -286,7 +282,7 @@ void print_type(unsigned int e_type, unsigned char *e_ident)
  */
 void print_osabi(unsigned char *e_ident)
 {
-	printf(" OS/ABI: ");
+	printf(" OS/ABI:           ");
 
 	switch (e_ident[EI_OSABI])
 	{
