@@ -1,10 +1,10 @@
 #!/usr/bin/python3
-"""defines perimeter island"""
+"""defines perimeter island."""
 
 def island_perimeter(grid):
-    """
-    Calculate the perimeter of the island described in grid:
+    """Calculate the perimeter of the island described in grid:
 
+    Args:
     param grid: list representing the island grid
     return: Island perimeter
     """
