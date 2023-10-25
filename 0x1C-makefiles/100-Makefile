@@ -7,10 +7,10 @@ CFLAGS = -Wall -Werror -Wextra -pedantic
 RM = /bin/rm -f
 
 all: m.h $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(OBJ) -o $(NAME)
 
 clean:
-	$(RM) $(OBJ) $(NAME)
+	$(RM) *~ $(NAME)
 
 oclean:
 	$(RM) $(OBJ)
