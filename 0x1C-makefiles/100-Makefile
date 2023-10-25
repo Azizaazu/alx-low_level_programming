@@ -4,7 +4,6 @@ SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pedantic
-RM = /bin/rm -f
 
 all: m.h $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
