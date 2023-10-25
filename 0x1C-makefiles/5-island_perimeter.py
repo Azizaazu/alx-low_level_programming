@@ -5,8 +5,9 @@ def island_perimeter(grid):
     """Calculate the perimeter of the island described in grid:
 
     Args:
-    param grid: list representing the island grid
-    return: Island perimeter
+        grid(list): list representing the island grid
+    Return: 
+        Island perimeter
     """
 
     width, height = len(grid[0]), len(grid)
