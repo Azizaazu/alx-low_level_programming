@@ -1,52 +1,43 @@
 #include "search_algos.h"
-#include <math.h>
 
 /**
- * jump_list - searches for a value in an array of integers
- * using the Jump search algorithm
- * @list: input list
- * @size: size
- * @value: value
+ * jump_list - Searches linked list of integers using jump search.
+ * @list: A pointer
+ * @size: number of nodes
+ * @value: value to search for.
  *
- * Return: index of the number
+ * Return:NULL, pointer to the first node where the value is located.
+ * Description: Prints a value every time it is compared in the list.
+ *
  */
 
 listint_t *jump_list(listint_t *list, size_t size, int value)
 {
-	size_t idx, ke, num;
-	listint_t *prv;
+	size_t stp, stp_size;
+	listint_t *nd, *jmp;
 
 	if (list == NULL || size == 0)
 		return (NULL);
 
-	num = (size_t)sqrt((double)size);
-	idx = 0;
-	ke = 0;
-
-	do {
-		prv = list;
-		ke++;
-		idx = ke * num;
-
-		while (list->next && list->idx < idx)
-			list = list->next;
-
-		if (list->next == NULL && idx != list->idx)
-			idx = list->idx;
-
-		printf("Value checked at index [%d] = [%d]\n", (int)idx, list->n);
-
-	} while (idx < size && list->next && list->n < value);
-
-	printf("Value found between indexes ");
-	printf("[%d] and [%d]\n", (int)prv->idx, (int)list->idx);
-
-	for (; prv && prv->idx <= list->idx; prv = prv->next)
+	stp = 0;
+	stp_size = sqrt(size);
+	for (nd = jmp = list; jmp->index + 1 < size && jmp->n < value;)
 	{
-		printf("Value checked at index [%d] = [%d]\n", (int)prv->idx, prv->n);
-		if (prv->n == value)
-			return (prv);
+		nd = jmp;
+		for (stp += stp_size; jmp->index < stp; jmp = jmp->next)
+		{
+			if (jmp->index + 1 == size)
+				break;
+		}
+		printf("Value checked at index [%ld] = [%d]\n", jmp->index, jmp->n);
 	}
 
-	return (NULL);
+	printf("Value found between indexes [%ld] and [%ld]\n",
+			nd->index, jmp->index);
+
+	for (; nd->index < jmp->index && nd->n < value; nd = nd->next)
+		printf("Value checked at index [%ld] = [%d]\n", nd->index, nd->n);
+	printf("Value checked at index [%ld] = [%d]\n", nd->index, nd->n);
+
+	return (nd->n == value ? nd : NULL);
 }
