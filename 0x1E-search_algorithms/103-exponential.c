@@ -39,6 +39,7 @@ int _binary_search(int *array, size_t left, size_t right, int value)
 	return (-1);
 }
 
+
 /**
  * exponential_search -  a function that searches for a value
  * in a sorted array of integers
